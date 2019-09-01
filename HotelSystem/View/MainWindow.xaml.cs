@@ -27,7 +27,7 @@ namespace HotelSystem
             RoomsTab.DataContext = new RoomsTabViewModel(Context);
         }
 
-        private void Fill()
+        private void Fill(object sender, RoutedEventArgs e)
         {
             var rooms = new[]
             {

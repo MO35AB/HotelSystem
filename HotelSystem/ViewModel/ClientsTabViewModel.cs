@@ -190,11 +190,11 @@ namespace HotelSystem.ViewModel
                     IEnumerable<Client> queryResult = Context.Clients.Local;
                     if (!string.IsNullOrEmpty(ClientFilter.FirstName))
                     {
-                        queryResult = queryResult.Where(client => client.FirstName.Contains(ClientFilter.FirstName));
+                        queryResult = queryResult.Where(client => client.FirstName.ToUpper().Contains(ClientFilter.FirstName.ToUpper()));
                     }
                     if (!string.IsNullOrEmpty(ClientFilter.LastName))
                     {
-                        queryResult = queryResult.Where(client => client.LastName.Contains(ClientFilter.LastName));
+                        queryResult = queryResult.Where(client => client.LastName.ToUpper().Contains(ClientFilter.LastName.ToUpper()));
                     }
                     if (ClientFilter.Birthdate != null)
                     {

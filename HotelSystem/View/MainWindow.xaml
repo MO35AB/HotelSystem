@@ -7,19 +7,39 @@
         xmlns:local="clr-namespace:HotelSystem.ViewModel"
         xmlns:misc="clr-namespace:HotelSystem.Miscellaneous"
         mc:Ignorable="d"
+        
+        
+        xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
         Title="MainWindow" Height="700" Width="1000">
     <Window.Resources>
         <misc:RoomTypeConverter x:Key="RoomTypeConverter"/>
         <misc:ResetFilterClientParametersConverter x:Key="ResetFilterClientConverter"/>
         <misc:ResetFilterRoomParametersConverter x:Key="ResetFilterRoomConverter"/>
+        
+
+        <!-- tell Dragablz tab control to use the Material Design theme -->
+        <Style TargetType="{x:Type dragablz:TabablzControl}" 
+               BasedOn="{StaticResource MaterialDesignTabablzControlStyle}" />
+        
         <Style TargetType="DataGrid">
             <Setter Property="AutoGenerateColumns" Value="False"/>
             <Setter Property="CanUserAddRows" Value="False"/>
             <Setter Property="CanUserDeleteRows" Value="False"/>
         </Style>
     </Window.Resources>
-    
-    <TabControl>
+
+    <dragablz:TabablzControl>
+        <dragablz:TabablzControl.InterTabController>
+            <dragablz:InterTabController />
+        </dragablz:TabablzControl.InterTabController>
         <!-- < Clients TAB > -->
         <TabItem x:Name="ClientsTab" Header="Clients" d:DataContext="{d:DesignInstance d:Type=local:ClientsTabViewModel, IsDesignTimeCreatable=True}">
             <Grid>
@@ -44,7 +64,7 @@
                 </DataGrid>
                 
                 <!-- < Clients CRUD > -->
-                <Border Grid.Column="1" BorderThickness="1" Margin="50" CornerRadius="10" BorderBrush="LightBlue">
+                <materialDesign:Card Grid.Column="1" Padding="10" BorderThickness="1" UniformCornerRadius="20" Margin="50" BorderBrush="LightBlue">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
@@ -89,6 +109,7 @@
                             <Button Margin="5" Padding="10,0,10,0" Content="Add" Command="{Binding AddClientCommand}"/>
                             <Button Margin="5" Padding="10,0,10,0" Content="Update" Command="{Binding UpdateClientCommand}"/>
                             <Button Margin="5" Padding="10,0,10,0" Content="Delete" Command="{Binding DeleteClientCommand}"/>
+                            <Button Margin="5" Padding="10,0,10,0" Content="Dummy" Click="Fill"/>
                             <Button Margin="5" Padding="10,0,10,0" HorizontalAlignment="Right" Content="Export" Command="{Binding ExportClientsCommand}"/>
                         </DockPanel>
 
@@ -187,14 +208,14 @@
                         </Expander>
                         <!-- </ Clients Filter > -->
                     </Grid>
-                </Border>
+                </materialDesign:Card>
                 <!-- </ Clients CRUD > -->
             </Grid>
         </TabItem>
         <!-- </ Clients TAB > -->
 
         <!-- < Hotel room TAB > -->
-        <TabItem x:Name="RoomsTab" Header="Hotel rooms" d:DataContext="{d:DesignInstance d:Type=local:RoomsTabViewModel, IsDesignTimeCreatable=True}">
+        <TabItem x:Name="RoomsTab" Header="Rooms" d:DataContext="{d:DesignInstance d:Type=local:RoomsTabViewModel, IsDesignTimeCreatable=True}">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
@@ -214,7 +235,7 @@
                 </DataGrid>
 
                 <!-- < Hotel rooms CRUD > -->
-                <Border Grid.Column="1" BorderThickness="1" Margin="50" CornerRadius="10" BorderBrush="LightBlue">
+                <materialDesign:Card Grid.Column="1" Padding="10" BorderThickness="1" Margin="50" UniformCornerRadius="20" BorderBrush="LightGray">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
@@ -240,7 +261,7 @@
                             <Button Margin="5" Padding="10,0,10,0" Content="Delete" Command="{Binding DeleteRoomCommand}"/>
                         </StackPanel>
 
-                        <DataGrid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding SelectedRoom.Clients}">
+                        <DataGrid Grid.Row="3" Grid.Column="0" AlternatingRowBackground="AliceBlue" Grid.ColumnSpan="2" ItemsSource="{Binding SelectedRoom.Clients}">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="First name" Binding="{Binding FirstName}"/>
                                 <DataGridTextColumn Header="Last name" Binding="{Binding LastName}"/>
@@ -314,10 +335,10 @@
                         </Expander>
                         <!-- </ Rooms Filter > -->
                     </Grid>
-                </Border>
+                </materialDesign:Card>
                 <!-- </ Hotel rooms CRUD > -->
             </Grid>
         </TabItem>
         <!-- </ Hotel room TAB > -->
-    </TabControl>
+    </dragablz:TabablzControl>
 </Window>
