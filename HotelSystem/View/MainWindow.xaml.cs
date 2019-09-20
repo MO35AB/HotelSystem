@@ -22,12 +22,12 @@ namespace HotelSystem
             Database.SetInitializer(new DropCreateDatabaseIfModelChanges<HotelContext>());
             //Database.SetInitializer(new DropCreateDatabaseAlways<HotelContext>()); // set it if you want to recreate database
             Context = new HotelContext();
-            //Fill(null, null) ; // uncomment if you want to fill database with default values
+            //Fill() ; // uncomment if you want to fill database with default values
             ClientsTab.DataContext = new ClientsTabViewModel(Context);
             RoomsTab.DataContext = new RoomsTabViewModel(Context);
         }
 
-        private void Fill(object sender, RoutedEventArgs e)
+        private void Fill()
         {
             var rooms = new[]
             {
