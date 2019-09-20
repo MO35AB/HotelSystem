@@ -113,6 +113,7 @@
     <Compile Include="HotelDbContext\ClientConfig.cs" />
     <Compile Include="HotelDbContext\PersonConfig.cs" />
     <Compile Include="HotelDbContext\RoomConfig.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Miscellaneous\XamlConverters.cs" />
     <Compile Include="Model\Client.cs" />
     <Compile Include="HotelDbContext\HotelContext.cs" />
