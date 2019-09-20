@@ -109,7 +109,7 @@
                             <Button Margin="5" Padding="10,0,10,0" Content="Add" Command="{Binding AddClientCommand}"/>
                             <Button Margin="5" Padding="10,0,10,0" Content="Update" Command="{Binding UpdateClientCommand}"/>
                             <Button Margin="5" Padding="10,0,10,0" Content="Delete" Command="{Binding DeleteClientCommand}"/>
-                            <Button Margin="5" Padding="10,0,10,0" Content="Dummy" Click="Fill"/>
+                            <!--<Button Margin="5" Padding="10,0,10,0" Content="Dummy" Command="{Binding DummyClientsRoomsAddCommand}"/>-->
                             <Button Margin="5" Padding="10,0,10,0" HorizontalAlignment="Right" Content="Export" Command="{Binding ExportClientsCommand}"/>
                         </DockPanel>
 

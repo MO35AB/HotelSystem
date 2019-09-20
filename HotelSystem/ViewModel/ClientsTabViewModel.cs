@@ -47,6 +47,7 @@ namespace HotelSystem.ViewModel
         private RelayCommand<object> _resetFilterClientCommand;
         private RelayCommand _clientsGridSelectionChangedCommand;
         private RelayCommand _clientsFilterChangedCommand;
+        private RelayCommand _dummyClientRoomsAdd;
 
         public ICommand AddClientCommand =>
             _addClientCommand ??
@@ -73,7 +74,20 @@ namespace HotelSystem.ViewModel
                     }
                     return true;
                 }));
-
+        public ICommand DummyClientsRoomsAddCommand =>
+            _dummyClientRoomsAdd ??
+            (_dummyClientRoomsAdd = new RelayCommand(
+                () =>
+                {
+                    var clients = new[]
+                    {
+                    new Client { FirstName = "Dummy", LastName = "Test", Birthdate = new DateTime(1995, 9, 2), Account = "just_to_test", Room = ClientInfo.Room }
+                };
+                    if (ClientInfo.Room.Number != null)
+                        Context.Clients.AddRange(clients);
+                    else return;
+                }
+                ));
         public ICommand UpdateClientCommand =>
             _updateClientCommand ??
             (_updateClientCommand = new RelayCommand(
