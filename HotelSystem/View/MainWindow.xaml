@@ -8,7 +8,7 @@
         xmlns:misc="clr-namespace:HotelSystem.Miscellaneous"
         mc:Ignorable="d"
         
-        
+        WindowState="Maximized"
         xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -18,7 +18,7 @@
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        Title="MainWindow" Height="700" Width="1000">
+        Title="MainWindow" Height="768" Width="1366">
     <Window.Resources>
         <misc:RoomTypeConverter x:Key="RoomTypeConverter"/>
         <misc:ResetFilterClientParametersConverter x:Key="ResetFilterClientConverter"/>
@@ -339,6 +339,7 @@
                 <!-- </ Hotel rooms CRUD > -->
             </Grid>
         </TabItem>
+        
         <!-- </ Hotel room TAB > -->
     </dragablz:TabablzControl>
 </Window>
